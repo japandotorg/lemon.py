@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 
 import os
-import asyncio
 import tomlkit
 import logging
 import nextcord
 
 from pathlib import Path
 from nextcord.ext.tasks import loop
+from database import database as botdb
 from nextcord.ext import commands, tasks
-from nextcord import Client, Intents, Embed, guild
-from nextcord.ext.commands.core import has_permissions, MissingPermissions
 
 config_file = Path("config.toml")
 
@@ -20,6 +18,9 @@ if not config_file.is_file():
     )
     
 bot_config = tomlkit.parse(config_file.read_text())
+
+if os.environ.get("MY_DATABAsE"):
+    bot_config["bot"]["database"] = os.environ.get("MY_DATABASE")
 
 logger = logging.getLogger("nextcord")
 logger.setLevel(bot_config["bot"]["logging_level"])
@@ -73,6 +74,12 @@ async def on_ready():
         status=nextcord.Status.online,
         activity=nextcord.game(name=activity)
     )
+    
+    global loaded_cogs
+    global conn
+    conn = await botdb.init_dbconn(bot_config["bot"]["database"])
+    
+    logger.log(logging.INFO, f"{bot.user.name} Ready")
     
 @bot.command()
 async def load(ctx, extension):
