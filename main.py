@@ -20,7 +20,7 @@ if not config_file.is_file():
 bot_config = tomlkit.parse(config_file.read_text())
 
 if os.environ.get("MY_DATABAsE"):
-    bot_config["bot"]["database"] = os.environ.get("MY_DATABASE")
+    bot_config["bot"]["database_url"] = os.environ.get("MY_DATABASE")
 
 logger = logging.getLogger("nextcord")
 logger.setLevel(bot_config["bot"]["logging_level"])
@@ -77,7 +77,7 @@ async def on_ready():
     
     global loaded_cogs
     global conn
-    conn = await botdb.init_dbconn(bot_config["bot"]["database"])
+    conn = await botdb.init_dbconn(bot_config["bot"]["database_url"])
     
     logger.log(logging.INFO, f"{bot.user.name} Ready")
     
