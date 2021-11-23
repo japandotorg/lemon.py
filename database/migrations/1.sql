@@ -1,4 +1,4 @@
-create type mod as enum ('warn');
+create type mod as enum ('warn', 'glitch');
 
 create table if not exists mod
 (
