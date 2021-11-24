@@ -84,7 +84,7 @@ class DatabaseConn:
                     await self.init_db()
                     
     async def init_db(self):
-        sql_file = open("database/migrations/q.sql", "r")
+        sql_file = open("database/migrations/1.sql", "r")
         async with self.pool.acquire() as conn:
             async with conn.cursor() as cur:
                 await cur.execute(sql_file.read())
