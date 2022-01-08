@@ -1,0 +1,10 @@
+CREATE SCHEMA IF NOT EXISTS events;
+
+CREATE TABLE IF NOT EXISTS events.timers (
+    id SERIAL PRIMARY KEY,
+
+    event TEXT NOT NULL,
+    created TIMESTAMPTZ NOT NULL,
+    expires TIMESTAMPTZ NOT NULL,
+    data JSONB NOT NULL
+)
