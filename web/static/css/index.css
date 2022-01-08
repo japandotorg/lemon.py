@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap");
+
+:root {
+    --coral: #ff7f50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.max-width {
+    max-width: 1300px;
+    padding: 0 80px;
+    margin: auto;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    padding: 30px 0;
+    font-family: "Ubuntu", sans-serif;
+    transition: all 0.3s ease;
+    z-index: 99999;
+}
+
+.navbar .max-width {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo a {
+    color: var(--coral);
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.navbar .menu li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navbar .menu li a {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 25px;
+    transition: color 0.3s ease;
+}
+
+.navbar .menu li a:hover {
+    color: var(--coral);
+}
+
+.menu-btn {
+    color: #fff;
+    font-size: 23px;
+    cursor: pointer;
+    display: none;
+}
+
+#particles-js {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+}
+
+.home {
+    display: flex;
+    background: #121212 no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+}
+.home .max-width {
+    margin: auto 0 auto 150px;
+}
+.home .content .text {
+    color: var(--coral);
+    font-size: 75px;
+    font-weight: 600;
+    opacity: 100%;
+}
+.home .content .invite-stats {
+    font-size: 27px;
+}
+.home .content .invite-stats span {
+    color: var(--coral);
+}
+
+.invite {
+    position: absolute;
+    display: inline-block;
+    background: var(--coral);
+    color: #fff;
+    font-size: 25px;
+    padding: 12px 36px;
+    margin-top: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--coral);
+    transition: all 1s ease;
+}
+.invite:hover {
+    background: none;
+    color: var(--coral);
+}
+
+section {
+    padding: 100px 0;
+}
+section .title {
+    position: relative;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    font-family: "Ubuntu", sans-serif;
+}
+section .title::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 220px;
+    height: 3px;
+    background: #121212;
+    transform: translateX(-50%);
+}
+section .title::after {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    font-size: 20px;
+    color: crimson;
+    padding: 5px;
+    background: #fff;
+    transform: translateX(-50%);
+}

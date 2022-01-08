@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/index.css" rel="stylesheet">
+    <link href="/static/favicon.ico" rel="icon">
+
+    <title>{{ name }}</title>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="/">{{ name }}</a></div>
+            <ul class="menu">
+                <li><a href="/stats" class="menu-btn">Stats</a></li>
+                <li><a href="/discord" class="menu-btn">Contact</a></li>
+                <li><a href="/commands" class="menu-btn">Commands</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="home" id="home">
+        <div class="max-width">
+            <div class="content">
+                <div class="text">{{ name }}</div>
+                {% if stats is not none %}
+                <div class="invite-stats">Currently watching <span>{{ stats["users"] }}</span> users in
+                    <span>{{ stats["guilds"] }}</span> servers</div>
+                {% endif %}
+                <a class="invite" href="/invite">Invite {{ name }} to your Server</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="static/js/particles/particles.js"></script>
+    <script src="static/js/particles/app.js"></script>
+</body>
