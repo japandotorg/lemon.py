@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS public.guilds (
+    id BIGINT PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS public.prefixes (
+    id BIGINT PRIMARY KEY REFERENCES guilds (id) ON DELETE CASCADE,
+    prefix VARCHAR(25)
+);
