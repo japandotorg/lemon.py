@@ -11,7 +11,7 @@ import nextcord
 from aiohttp import ClientSession
 from nextcord.ext import commands
 
-# import config
+import config
 from web import ipc
 
 log = logging.getLogger("nextcord.example")
