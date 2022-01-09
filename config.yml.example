@@ -1,0 +1,7 @@
+token: ""
+postgres_uri: ""
+
+prefix:
+    - "?"
+
+status: "dnd"
