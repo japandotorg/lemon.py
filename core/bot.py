@@ -70,6 +70,9 @@ class NextcordExample(commands.Bot):
         self.extra = Extra()
         self.start_time = None
         
+        self.ipc = ipc.Server(self)
+        self.ipc.start()
+        
         self.context = commands.Context
         
     async def __prep(self):
