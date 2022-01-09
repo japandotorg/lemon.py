@@ -8,9 +8,9 @@ from discord.ext import commands
 from bot import core
 __all__ = ("setup",)
 class {cog}(commands.Cog):
-    def __init__(self, bot: core.CustomBot):
+    def __init__(self, bot: core.NextcordExample):
         self.bot = bot
-def setup(bot: core.CustomBot):
+def setup(bot: core.NextcordExample):
     bot.add_cog({cog}(bot))
 """
 
