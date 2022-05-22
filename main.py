@@ -56,7 +56,7 @@ def init(show: bool, start_bot: bool):
         "indexes.sql",
     )
     for file in files:
-        with open("scripts/sql/" + file, encoding="utf8") as f:
+        with open(f"scripts/sql/{file}", encoding="utf8") as f:
             read = f.read()
             if show:
                 print(read)

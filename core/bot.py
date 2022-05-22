@@ -21,14 +21,12 @@ __all__ = ("nextcord.example")
 
 @ipc.route(name="test")
 async def test(text):
-    return "this is a cool thing: {}".format(
-        text
-    )
+    return f"this is a cool thing: {text}"
     
 @ipc.route(name="stats")
 async def cool(bot):
     return {
-        "users": format(sum(1 for i in bot.users if not i.bot), ","),
+        "users": format(sum(not i.bot for i in bot.users), ","),
         "guilds": format(len(bot.guilds), ","),
     }
     
@@ -125,10 +123,10 @@ class NextcordExample(commands.Bot):
         return nextcord.Embed(**kwargs, color=color)
     
     async def paste(self, data: str, url="https://sourceb.in"):
-        async with self.session.post(url + "/documents", data=bytes(str(data), "utf-8")) as r:
+        async with self.session.post(f"{url}/documents", data=bytes(data, "utf-8")) as r:
             res = await r.json()
         key = res["key"]
-        return url + f"/{key}"
+        return f"{url}/{key}"
     
     async def getch_user(self, user_id: int) -> nextcord.User:
         user = self.get_user(user_id)
