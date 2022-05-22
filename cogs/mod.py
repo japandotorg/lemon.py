@@ -16,10 +16,7 @@ time_match = re.compile(
 )
 
 def none_to_zone(arg):
-    if arg is None:
-        return 0
-    else:
-        return arg
+    return 0 if arg is None else arg
     
 def get_timedelta_from_string(time_string: str) -> datetime.timedelta:
     result = time_match.match(time_string)
@@ -30,14 +27,10 @@ def get_timedelta_from_string(time_string: str) -> datetime.timedelta:
         result.group("minutes"),
     ]
     time = [int(none_to_zone(y)) for y in time]
-    
-    time_obj = datetime.timedelta(
-        weeks=time[0],
-        days=time[1],
-        hours=time[2],
-        minutes=time[3]
+
+    return datetime.timedelta(
+        weeks=time[0], days=time[1], hours=time[2], minutes=time[3]
     )
-    return time_obj
 
 class Duration(commands.Converter):
     async def convert(self, ctx, argument):
@@ -67,11 +60,7 @@ class Moderation(commands.Cog):
         for action in actions:
             if action[4] < datetime.datetime.utcnow():
                 member = guild.get_member(action[5])
-                if (
-                    action[1] == "mute"
-                    or action[1] == "hardmute"
-                    or action[1] == "glitch"
-                ):
+                if action[1] in ["mute", "hardmute", "glitch"]:
                     await self.unmute_inner(member, action[2], action[3])
                     await self.conn.add_to_mod_logs(
                         member.id,
@@ -95,7 +84,7 @@ class Moderation(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def warn(self, ctx, member: nextcord.Member, *, reason: str):
         if member.id == self.bot.user.id:
-            await ctx.send(f"You cannot warn yourself")
+            await ctx.send("You cannot warn yourself")
             return True
         await ctx.trigger_typing()
         await self.conn.add_to_mod_logs(

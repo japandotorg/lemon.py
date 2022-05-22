@@ -39,11 +39,11 @@ class Info(commands.Cog):
             )
         except nextcord.NotFound:
             return
-        
+
         botPing = round(self.bot.latency * 1000, 2)
-        e.description = e.description + f"\nDiscord Websocket Latency: {botPing}ms"
+        e.description = f"{e.description}\nDiscord Websocket Latency: {botPing}ms"
         await asyncio.sleep(0.25)
-        
+
         averagePing = (botPing + totalPing) / 2
         if averagePing >= 1000:
             color = nextcord.Colour.red()
@@ -51,10 +51,10 @@ class Info(commands.Cog):
             color = nextcord.Colour.orange()
         else:
             color = nextcord.Colour.green()
-            
+
         if not self.settings["host_latency"]:
             e.title = "Pong!"
-            
+
         e.color = color
         try:
             await message.edit(embed=e)
@@ -62,7 +62,7 @@ class Info(commands.Cog):
             return
         if not self.settings["host_latency"]:
             return
-        
+
         executor = concurrent.features.ThreadPoolExecutor(max_workers=1)
         loop = asyncio.get_event_loop()
         try:
@@ -74,9 +74,9 @@ class Info(commands.Cog):
         else:
             result = s.results.dict()
             host_latency = round(result["ping"], 2)
-            
+
         e.title = "Pong!"
-        e.description = e.description + f"\nHost Latency: {host_latency}ms"
+        e.description = f"{e.description}\nHost Latency: {host_latency}ms"
         await asyncio.sleep(0.25)
         try:
             await message.edit(embed=e)
