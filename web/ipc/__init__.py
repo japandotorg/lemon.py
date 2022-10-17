@@ -107,10 +107,7 @@ class Server:
             else:
                 cog = self.bot.get_cog(func.__qualname__.split(".", maxsplit=1)[0])
                 kwargs = json["kwargs"]
-                if cog:
-                    args = [cog, kwargs]
-                else:
-                    args = [self.bot, kwargs]
+                args = [cog, kwargs] if cog else [self.bot, kwargs]
                 if kwargs == {}:
                     del args[1]
 
